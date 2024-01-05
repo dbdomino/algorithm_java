@@ -111,6 +111,7 @@ local.properties
 .idea/*.iml
 .idea/modules
 .idea/vcs.xml
+.idea/git_toolbox_prj.xml
 *.iml
 *.ipr
 
