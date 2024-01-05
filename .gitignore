@@ -110,6 +110,7 @@ local.properties
 .idea/misc.xml
 .idea/*.iml
 .idea/modules
+.idea/vcs.xml
 *.iml
 *.ipr
 
