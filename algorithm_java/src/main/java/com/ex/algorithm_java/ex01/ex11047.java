@@ -22,7 +22,7 @@ public class ex11047 {
 
         int count = 0;
 
-        for (int i = n-1; i >= 0; i--) {
+        for (int i = n-1; i >= 0; i--) { //큰수부터 내려가며 깎아가는 알고리즘
             if (k / coin[i] > 0) {
                 count += (k/coin[i]);
                 k -= (k/coin[i])*coin[i];
