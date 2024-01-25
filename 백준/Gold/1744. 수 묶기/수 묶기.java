@@ -1,59 +1,56 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Arrays;
 
+/**
+ *  No.1744: 수 묶기
+ *  Hint: Greedy + sort
+ */
+
 public class Main {
-	public static int N, answer;
-	public static int[] arr;
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
-		N = Integer.parseInt(br.readLine());
-		
-		arr = new int[N];
-		
-		// 최대 최소 기준
-		// 1. 음수 * 음수 (단, 큰 수 끼리 곱해야 큰 수가 됨을 주의)
-		// 2. 양수 * 양수  (단, 큰 수 끼리 곱해야 큰 수가 됨을 주의)
-		// 3. 만약 1이 포함된다면 *1 이아닌 +1을 한 수가 더 큰 수
-		// 4. 만약 음수하나와 0만 남아있다면 음수 * 0 즉, 0이 큰 수
-		
-		for (int i = 0; i < N; ++i) {
-			arr[i] = Integer.parseInt(br.readLine());
-		}
-		
-		Arrays.sort(arr);
-		
-		int minusIdx = 0;
-		// 음수 ~ 0까지의 수를 처리
-		while (minusIdx < N && arr[minusIdx] < 1) {
-			// 곱한 값이 양수가 된다면
-			if (minusIdx + 1 < N && arr[minusIdx + 1] < 1) {
-				answer += (arr[minusIdx] * arr[minusIdx + 1]);
-				minusIdx += 2;
-			}
-			else {
-				// 양수가 아니라면 그냥 더한다.
-				// 즉, 0이거나 음수가 하나만 남았을 경우
-				answer += arr[minusIdx++];
-			}
-		}
-		
-		int plusIdx = N - 1;
-		// 양수를 처리
-		while (plusIdx >= minusIdx && arr[plusIdx] > 0) {
-			// 1은 곱하지 않게하고 다른 두 양수를 곱하게한다.
-			if (plusIdx - 1 >= minusIdx && arr[plusIdx - 1] > 1) {
-				answer += (arr[plusIdx] * arr[plusIdx - 1]);
-				plusIdx -= 2;
-			}
-			else {
-				// 1이거나 양수가 하나만 남았다면 그냥 더해준다.
-				answer += arr[plusIdx--];
-			}
-		}
-		
-		System.out.println(answer);
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
+
+        int minusCount = 0;
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+            if (arr[i] <= 0) {
+                minusCount++;
+            }
+        }
+        Arrays.sort(arr);
+
+        int ans = 0;
+        // 음수 부분(0포함) - 두 개씩 묶어서 더하기
+        for (int i = 1; i < minusCount; i += 2) {
+            ans += (arr[i - 1] * arr[i]);
+        }
+
+        // 음수(0포함)가 홀수 개일 경우 그냥 더하기
+        if (minusCount % 2 == 1) {
+            ans += arr[minusCount - 1];
+        }
+
+        // 양수가 홀수 개일 경우 그냥 더하기
+        if ((n - minusCount) % 2 == 1) {
+            ans += arr[minusCount];
+        }
+
+        // 양수 부분 - 두 개씩 묶어서 더하기
+        for (int i = n - 1; i > minusCount ; i -= 2) {
+            int mul = arr[i] * arr[i - 1];
+            int sum = arr[i] + arr[i - 1];
+            if (mul > sum) {
+                ans += mul;
+            } else {
+                ans += sum;
+            }
+        }
+
+        bw.write(String.valueOf(ans));
+        bw.close();
+        br.close();
+    }
 }
