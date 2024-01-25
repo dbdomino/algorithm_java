@@ -18,10 +18,10 @@ public class ArrToList {
         // 위처럼 하지말고 별도로 리스트로 변환하는데 있어서, int를 Integer로 바꿔서 list에 저장시켜야 한다.
         // list의 규칙이니 따를수밖에 없다.
 //        방법1 stream으로 변환하기
-        List<Integer> intList  = Arrays.stream(nArr)
-                .boxed() // IntStream을 Stream<Integer>로 변경한다. int 요소, long 요소, double 요소를 Integer, Long, Double 요소로 박싱해서 Stream을 생성
+//        List<Integer> intList  = Arrays.stream(nArr)
+//                .boxed() // IntStream을 Stream<Integer>로 변경한다. int 요소, long 요소, double 요소를 Integer, Long, Double 요소로 박싱해서 Stream을 생성
 //                .collect(Collectors.toList());
-                .toList();
+//                .toList();
         // 방법2 반복문으로 변환하기 int -> List
          List<Integer> intList2 = new ArrayList<>();
          for (int element : nArr) {
