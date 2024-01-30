@@ -11,14 +11,13 @@ public class Main {
         String[] b_arr = b.split(" ");
         int[] num = new int[2];
 
-        for (int i = 0; i<2; i++){
-            char[] c_arr = b_arr[i].toCharArray();
-            char temp = c_arr[0];
-            c_arr[0] = c_arr[2];
-            c_arr[2] = temp;
+        StringTokenizer st = new StringTokenizer(b);
 
-            num[i] = Integer.parseInt(new String(c_arr,0,3));
+        for (int i = 0; i<2; i++){
+            b_arr[i] = new StringBuffer(b_arr[i]).reverse().toString();
+            num[i] = Integer.parseInt(b_arr[i]);
         }
+
         if (num[0] <num[1]) System.out.println(num[1]);
         else System.out.println(num[0]);
         br.close();
