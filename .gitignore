@@ -103,6 +103,7 @@ local.properties
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
 .idea
+.idea/compiler.xml
 .idea/*.xml
 .idea/modules
 .idea/artifacts
@@ -111,6 +112,7 @@ local.properties
 out
 gen
 build
+build/
 
 # CMake
 cmake-build-*/
@@ -232,6 +234,10 @@ buildNumber.properties
 .gradletasknamecache
 **/build/
 !src/**/build/
+.gradle/**/*.lock
+.gradle/**/*.bin
+*.lock
+*.bin
 
 ### Compliled files
 /target/
