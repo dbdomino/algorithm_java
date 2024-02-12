@@ -41,7 +41,6 @@ public class ex1934 {
 
         System.out.println(d);
         System.out.println(a * b / d);// 최소공배수
-
  */
         StringBuilder sb = new StringBuilder();
 
