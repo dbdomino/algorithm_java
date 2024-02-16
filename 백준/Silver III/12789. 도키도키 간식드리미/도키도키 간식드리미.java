@@ -23,9 +23,9 @@ public class Main {
             if (a == cnt) cnt++;
             else {
                     //새로운 줄이이 비어있지 않을 때 가장 최근에 들어간 요소가 찾는 번호일 경우
-                if(!stack.isEmpty() && stack.peek() == cnt){
+                if(!stack.isEmpty() && stack.peek() == cnt){ // 이런경우도 생각해야 함. 꺼내면서도 순서지ㅕ야 하므로.
                     stack.pop();
-                    i--; //임시 저장소에 있었지 stack이라는 공간에 있었던 것은 아니므로 한번더 반복해야한다.
+                    i--; //배열공간이 아닌 stack에있던걸 꺼낸거라, 한번더 반복해야한다.
                     cnt++;
                 }else{ //찾는 번호가 아닐 경우 임시저장소에 넣는다
                     stack.push(a);
