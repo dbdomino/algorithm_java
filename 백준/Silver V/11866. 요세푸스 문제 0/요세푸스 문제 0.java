@@ -17,21 +17,25 @@ public class Main {
         for (int i =0; i<n; i++) {
             queue.offer(i+1);
         }
+        sc.close();
+        
+        StringBuffer sb = cal(n, k, queue);
+        System.out.println(sb);
 
+    }
+
+    private static StringBuffer cal(int n, int k, Queue<Integer> queue) {
         StringBuffer sb = new StringBuffer();
         sb.append("<");
-        for (int i=0; i < n; i++) {
-            for (int j=0; j< k-1; j++){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j< k -1; j++){
                 queue.offer(queue.poll());
             }
             sb.append(queue.poll());
 
-            if (i != n-1) sb.append(", ");
+            if (i != n -1) sb.append(", ");
         }
         sb.append(">");
-        sc.close();
-
-        System.out.println(sb);
-
+        return sb;
     }
 }
