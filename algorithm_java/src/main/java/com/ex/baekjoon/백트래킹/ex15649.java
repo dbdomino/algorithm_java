@@ -6,7 +6,7 @@ public class ex15649 {
 
     public static int[] arr;
     public static boolean[] visit;
-
+   // 실버3 백트래킹 dfs 이해하기
     public static void main(String[] args) {
         /**
          * 자연수 N과 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인 수열을 모두 구하는 프로그램을 작성하시오.
