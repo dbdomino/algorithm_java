@@ -4,9 +4,10 @@ class Solution {
             String answer = "";
             StringBuilder result = new StringBuilder();
 
-            String[] strArray = Arrays.stream(numbers)
-                .mapToObj(String::valueOf)
-                .toArray(String[]::new);
+            String[] arr = new String[numbers.length];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = String.valueOf(numbers[i]);
+            }
 
             /*
             Comparator의 compareTo
@@ -32,14 +33,25 @@ class Solution {
             o2 + o1 = 349 o1 + o2 = 934
             o2 + o1 = 59 o1 + o2 = 95
              */
-            Arrays.sort(strArray, (o1, o2) -> (o2 + o1).compareTo(o1 + o2));
-            
-            if (strArray[0].equals("0")) {
+            Arrays.sort(arr, (o1, o2) -> (o2 + o1).compareTo(o1 + o2));
+/*
+//내림차순정렬
+ Arrays.sort(str, new Comparator<String>() {
+    @Override
+    public int compare(String a, String b) {
+         return (b+a).compareTo(a+b);
+        //오름차순 정렬로 할거면 (o1+o2).compareTo(o1+o2);
+        }
+  });
+ */
+            // 0값이 중복일경우 ex){0,0,0}
+            // 답이 000이 나오면 안되므로 첫번째값이 0이면 0을 리턴
+            if (arr[0].equals("0")) {
                 return "0";
             }
 
-            for (int i = 0; i < strArray.length; i++) {
-                result.append(strArray[i]);
+            for (int i = 0; i < arr.length; i++) {
+                result.append(arr[i]);
             }
 
 
